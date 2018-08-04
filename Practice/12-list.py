@@ -20,9 +20,9 @@ for line in fh:
     # 길이 3글자 미만이 더 큰 영역이므로. 먼저 걸러주어야 한다.
     # 순서를 맞춰야 한다!
 
-    # 가디언 패턴이 먼저오고 그 뒤에 or가 와야 한다.
-    # 최단 평가(Short circuit evaluation)
-
     # if  wds[0] != 'From' or len(wds) < 3 :
     #     continue
     # print(wds[2])
+
+    # 가디언 패턴이 먼저오고 그 뒤에 or가 와야 한다.
+    # 최단 평가(Short circuit evaluation)
