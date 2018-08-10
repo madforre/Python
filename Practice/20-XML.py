@@ -18,7 +18,7 @@ input = '''<stuff>
 # 수도 있다.
 
 stuff = ET.fromstring(input)
-lst = stuff.findall('users/user')
+lst = stuff.findall('users/user') # 경로로 접근 가능
 print('User count:', len(lst))
 for item in lst:
     print('Name', item.find('name').text)
