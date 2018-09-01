@@ -13,32 +13,47 @@
 
 # 풀이
 
-# 인자 x는 피보나치 수열의 인덱스를 의미한다.
+# 인자 n는 피보나치 수열의 인덱스를 의미한다.
+
+import time # time 모듈 임포트
 
 # Recursive version
 
-def solution(x):
-    if x == 0: return 0
-    elif x == 1: return 1
+def rec(n):
+    if n == 0: return 0
+    elif n == 1: return 1
     else:
-        answer = solution(x-1) + solution(x-2)
+        answer = rec(n-1) + rec(n-2)
     return answer
 
 # Iterative version
 
-def solution(x):
-    # x가 0, 1 일 때.
-    if x < 2: return x
-    # x가 2이상
+def iter(n):
+    # n가 0, 1 일 때.
+    if n <= 1: return n
+    # n가 2이상
     else : 
-        a = 0
-        b = 1
-        count = 0
-        while count <= x: 
-            old_a = a
-            a = b
-            b = old_a + b
-            count += 1
-        return old_a
+        i = 2
+        t0 = 0
+        t1 = 1
+        while i <= n: 
+            # t0 = t1 할당하고 t1 = t0+t1 할당. 동시 선언.
+            t0, t1 = t1, t0 + t1 
+            i += 1
+        return t1
 
-# 나중에 시간이 되면 for 문으로도 해볼 것, 반복적 방법은 이해가 완벽하게 되진 않았음.
+while True:
+    nbr = int(input("Enter a number: "))
+    if nbr == -1:
+        break
+    
+    ts = time.time()
+    fibo = iter(nbr)
+    ts = time.time() - ts
+    print("Iterative version: %d (%.3f)" % (fibo, ts))
+    ts = time.time()
+    fibo = rec(nbr)
+    ts = time.time() - ts
+    print("Recursive version: %d (%.3f)" % (fibo, ts))
+
+# 재귀적으로 함수를 구현했을 때에는 성능상의 불리함이 있다!
